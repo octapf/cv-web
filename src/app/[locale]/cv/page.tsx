@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import CvPageActions from './CvPageActions';
 import CvMatchpointWordmarkSvg from './CvMatchpointWordmarkSvg';
 import PlayStoreGlyph from './PlayStoreGlyph';
@@ -36,6 +36,8 @@ const MATCHPOINT_REPO_URL = 'https://github.com/miralab-ar/matchpoint';
 const MATCHPOINT_WEB_REPO_URL = 'https://github.com/miralab-ar/matchpoint-web';
 const MATCHPOINT_WEB_SITE_URL = 'https://matchpoint.miralab.ar/';
 const MIRALAB_SITE_URL = 'https://miralab.ar';
+/** URL pública de este CV (sin barra final). Configurable para dominio propio. */
+const CV_SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://octapf.github.io/cv-web').replace(/\/$/, '');
 const MIRALAB_LOGO_IMAGE = '/images/miralab-logo-transparent.png';
 
 function FeaturedProjectBody({ text, googlePlayAria }: { text: string; googlePlayAria: string }) {
@@ -130,8 +132,8 @@ export async function generateMetadata({ params }: CvPageProps): Promise<Metadat
     openGraph: {
       title: t('metaTitle'),
       description: t('metaDescription'),
-      url: `https://miralab.ar/${locale}/cv`,
-      siteName: 'MIRALAB',
+      url: `${CV_SITE_URL}/${locale}/cv/`,
+      siteName: 'Octavio Frangipani',
       type: 'website',
     },
   };
@@ -139,6 +141,7 @@ export async function generateMetadata({ params }: CvPageProps): Promise<Metadat
 
 export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'cvOctavio' });
   const educationLines = t.raw('educationLines') as string[];
 
@@ -184,7 +187,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
     githubLabel: t('github'),
     portfolioUrl: 'https://miralab.ar',
     portfolioLabel: t('portfolio'),
-    fullCvUrl: `https://miralab.ar/${locale}/cv`,
+    fullCvUrl: `${CV_SITE_URL}/${locale}/cv/`,
     fullCvLabel: t('pdfFullCvLabel'),
     langSpanish: t('langSpanish'),
     langEnglish: t('langEnglish'),

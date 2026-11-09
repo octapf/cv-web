@@ -56,7 +56,7 @@
     "roleMiralabBullets": [
       "Run my own digital engineering studio: web and mobile apps, AI-powered solutions and technical consulting.",
       "Matchpoint: Android app (Google Play) for beach volleyball tournaments, built with Expo, React Native, TypeScript, Zustand, TanStack Query, a serverless API on Vercel and MongoDB.",
-      "Matchpoint Web: public Next.js site with tournament listings, teams, matches and standings; miralab.ar: studio website in three languages with a downloadable PDF CV."
+      "Matchpoint Web: public Next.js site with tournament listings, teams, matches and standings; miralab.ar: studio website in three languages."
     ],
     "roleMinsaitTitle": "Software Engineer",
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
