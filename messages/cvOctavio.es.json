@@ -1,19 +1,19 @@
 {
   "cvOctavio": {
     "metaTitle": "Octavio Frangipani — CV",
-    "metaDescription": "Senior Full Stack Developer (React, TypeScript, Next.js, Python/FastAPI). Interfaces en tiempo real, productos con IA, testing y arquitecturas de UI escalables.",
+    "siteDescription": "Senior Full Stack Engineer (React, TypeScript, Next.js, Python/FastAPI). Currículum en español, inglés e italiano.",
+    "metaDescription": "Senior Full Stack Engineer (React, TypeScript, Next.js, Python/FastAPI). Interfaces en tiempo real, productos con IA, testing y arquitecturas de UI escalables.",
     "langSwitchAria": "Idioma de la página",
     "langEs": "ES",
     "langEn": "EN",
     "langIt": "IT",
-    "backAria": "Volver al inicio",
-    "back": "Volver",
+    "portfolioLinkAria": "Abrir el portfolio en miralab.ar (pestaña nueva)",
     "pdfDownload": "Descargar CV en PDF",
     "pdfGenerating": "Generando…",
     "pdfAria": "Descargar el CV en PDF",
-    "pdfFilename": "cv-octavio-frangipani-senior-full-stack-developer-ES.pdf",
+    "pdfFilename": "cv-octavio-frangipani-senior-full-stack-engineer-ES.pdf",
     "pdfFullCvLabel": "CV completo y proyectos",
-    "headline": "Senior Full Stack Developer | React | TypeScript | Next.js | Node.js | Python | FastAPI",
+    "headline": "Senior Full Stack Engineer | React | TypeScript | Next.js | Node.js | Python | FastAPI",
     "metaContactAria": "Contacto y enlaces",
     "location": "Buenos Aires, Argentina · Remoto (GMT-3) · Ciudadano de la UE",
     "whatsappAria": "Enviar mensaje por WhatsApp a +34 722 696 514 (España)",
@@ -25,8 +25,8 @@
     "langSpanish": "Español nativo",
     "langEnglish": "Inglés C1 (profesional)",
     "sectionSummary": "Resumen profesional",
-    "summaryRich": "Senior Full Stack Developer con más de 5 años de experiencia en <k>tecnologías de la información</k> y un fuerte foco en frontend. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend <k>Next.js</k> y el backend <k>Python</k>/<k>FastAPI</k>/<k>PostgreSQL</k>: interfaces en <k>tiempo real</k> por WebSockets, seguridad, rendimiento y <k>accesibilidad</k>. Antes lideré el desarrollo de un <k>sistema de microfrontends</k> con <k>Webpack Module Federation</k> para <k>Zara/Inditex</k>, una de las mayores marcas retail del mundo. Especializado en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>, con sólida experiencia en <k>TDD</k>, <k>tests end-to-end</k> y <k>refactorización</k> continua. Colaboración estrecha en equipos ágiles junto a <k>UX/UI</k> para convertir <k>wireframes</k> en interfaces pixel-perfect y accesibles. Impulso de la cultura de <k>revisión de código</k> y del <k>desarrollo asistido por IA</k>. Desde Argentina (GMT-3), con horario compatible con EE. UU. y Europa; ciudadano de la UE; disponible para proyectos remotos como contractor o a tiempo completo.",
-    "summaryPdfRich": "Senior Full Stack Developer con más de 5 años de experiencia y un fuerte foco en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend Next.js y el backend <k>Python/FastAPI</k>. Antes diseñé un <k>sistema de microfrontends</k> para <k>Zara/Inditex</k> y aceleré un <k>25%</k> la entrega de funcionalidades con desarrollo asistido por IA.",
+    "summaryRich": "Senior Full Stack Engineer con más de 5 años de experiencia en <k>tecnologías de la información</k> y un fuerte foco en frontend. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend <k>Next.js</k> y el backend <k>Python</k>/<k>FastAPI</k>/<k>PostgreSQL</k>: interfaces en <k>tiempo real</k> por WebSockets, seguridad, rendimiento y <k>accesibilidad</k>. Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> con <k>Webpack Module Federation</k> para <k>Zara/Inditex</k>, una de las mayores marcas retail del mundo. Especializado en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>, con sólida experiencia en <k>TDD</k>, <k>tests end-to-end</k> y <k>refactorización</k> continua. Colaboración estrecha en equipos ágiles junto a <k>UX/UI</k> para convertir <k>wireframes</k> en interfaces pixel-perfect y accesibles. Impulso de la cultura de <k>revisión de código</k> y del <k>desarrollo asistido por IA</k>. Desde Argentina (GMT-3), con solapamiento completo con horario de EE. UU. y por la mañana con Europa; ciudadano de la UE; disponible para proyectos remotos como contractor o a tiempo completo.",
+    "summaryPdfRich": "Senior Full Stack Engineer con más de 5 años de experiencia y un fuerte foco en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend Next.js y el backend <k>Python/FastAPI</k>. Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> para <k>Zara/Inditex</k> y aceleré un <k>25%</k> la entrega de funcionalidades con desarrollo asistido por IA.",
     "sectionSkills": "Habilidades técnicas",
     "skillFrontendTitle": "Frontend",
     "skillFrontendBody": "React · TypeScript · Next.js · Redux · Zustand · TanStack Query · React Native · Expo · ES6 · WebSockets · WCAG · Responsive",
@@ -44,7 +44,7 @@
     "roleDatadopeBullets": [
       "Desarrollé IOMETRICS SmartOps®, una plataforma de IA que ayuda a los equipos de operaciones a investigar incidencias, siempre con una persona en el control (Next.js · React · TypeScript · Python · FastAPI · PostgreSQL).",
       "Funcionalidades clave de la consola de operación: rediseño de la vista de eventos (columnas configurables, URLs de alerta para compartir) y un modo demo para presentaciones a clientes.",
-      "Tiempo real fiable por WebSockets: refresco de token, reconexión, conciliación de paginación y avisos de alertas nuevas.",
+      "Tiempo real fiable por WebSockets: refresco de token, reconexión, conciliación con la paginación del servidor y avisos de alertas nuevas.",
       "Refuerzo de contraseñas y sesiones en frontend y backend: políticas de fortaleza, caducidad e historial, bloqueo de cuentas, control de sesiones simultáneas e inicio de sesión SAML.",
       "Backend e IA: investigación automática de alertas, validación de contratos de ingesta y migraciones de base de datos seguras; contribuciones a funcionalidades del agente de IA y a las salvaguardas de privacidad de datos.",
       "Rendimiento (virtualización de listas, profiling bajo carga), accesibilidad WCAG 2.2 AA y testing con Playwright, Vitest y pytest; más de 110 MR mergeados con flujos asistidos por IA (Claude Code, Cursor).",
@@ -62,7 +62,7 @@
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
     "roleMinsaitCompany": "Minsait · Barcelona (Remoto)",
     "roleMinsaitBullets": [
-      "Diseñé el sistema de microfrontends (Webpack Module Federation) de Zara/Inditex, líder mundial del retail.",
+      "Diseñé la arquitectura del sistema de microfrontends (Webpack Module Federation) para Zara/Inditex, una de las mayores marcas retail del mundo.",
       "Desarrollé dashboards en Next.js para KPIs de stock con Redux, Zustand y TanStack Query, reduciendo llamadas redundantes a la API; librerías de UI modulares publicadas en npm para varios equipos.",
       "Despliegues de bajo riesgo gracias a TDD, pruebas end-to-end con Cypress y validaciones CRUD específicas por mercado.",
       "Apliqué principios de diseño de software; CI/CD con Jenkins; convertí wireframes de Figma en interfaces accesibles (WCAG) y responsive.",
@@ -74,7 +74,7 @@
     "roleUrbanyCompany": "Urbany Hostels · Barcelona (Híbrido)",
     "roleUrbanyBullets": [
       "Construí productos SaaS e integraciones MVP con las APIs de Stripe y PayPal, mejorando la conversión de reservas.",
-      "Diseñé la arquitectura de servicios backend con flujos de datos basados en JSON; en el cliente, hooks de React con ES6 y estado global con Redux en los flujos de reserva y administración.",
+      "Diseñé la arquitectura de servicios backend con flujos de datos basados en JSON; en el cliente, hooks personalizados de React con ES6 y estado global con Redux en los flujos de reserva y administración.",
       "Calidad con tests unitarios en Jest y pipelines de testing automatizado."
     ],
     "roleWorksutTitle": "Full Stack Developer",
@@ -112,11 +112,11 @@
     "matchpointImageAlt": "Wordmark Matchpoint",
     "matchpointImageLinkAria": "Abrir el repositorio Matchpoint en GitHub",
     "matchpointTitle": "Matchpoint Mobile",
-    "matchpointDescription": "App Android|PS| para torneos de vóley playa: invitaciones, equipos de dos, roles de jugador y organizador, divisiones y categorías, resultados en vivo y sistema de apuestas.",
+    "matchpointDescription": "App Android|PS| para torneos de vóley playa: invitaciones, equipos de dos, roles de jugador y organizador, divisiones y categorías, resultados en vivo y pronósticos de resultados.",
     "matchpointStackLabel": "Tecnologías",
     "matchpointStack": "Expo 55 · React Native · Expo Router · TypeScript · NativeWind · Zustand · TanStack Query · JWT · API serverless (Vercel) · MongoDB · Vitest · CI",
     "matchpointWebTitle": "Matchpoint Web",
-    "matchpointWebDescription": "Sitio público en Next.js del ecosistema Matchpoint: listado de torneos, ficha con pestañas (resumen, inscripciones, equipos, partidos) y consumo de la API pública. Interfaz solo lectura, desplegable en la web.",
+    "matchpointWebDescription": "Sitio público en Next.js del ecosistema Matchpoint: listado de torneos, ficha con pestañas (resumen, equipos, jugadores, partidos, clasificaciones) e integración con la API pública de Matchpoint. Interfaz de solo lectura, desplegable en la web.",
     "matchpointWebStack": "Next.js · React · Redux Toolkit · Tailwind CSS · TypeScript · Jest",
     "matchpointWebImageAlt": "Wordmark Matchpoint (web)",
     "matchpointWebImageLinkAria": "Abrir el repositorio Matchpoint Web en GitHub",
@@ -131,7 +131,7 @@
       "Next.js & React — Complete Guide · Academind May–Oct 2022",
       "Full Stack Web Developer – E-commerce · Traversy Media Mar–Jul 2021",
       "Full Stack Web Developer Bootcamp · The App Brewery Oct 2020–Feb 2021",
-      "Bachillerato Internacional (IB)"
+      "Diploma del Bachillerato Internacional (IB)"
     ]
   }
 }

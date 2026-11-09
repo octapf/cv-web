@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import CvPageActions from './CvPageActions';
 import CvMatchpointWordmarkSvg from './CvMatchpointWordmarkSvg';
 import PlayStoreGlyph from './PlayStoreGlyph';
-import type { CvPdfEducationLine, CvPdfPayload } from './cvPdfTypes';
+import type { CvPdfEducationLine, CvPdfFeaturedProject, CvPdfPayload } from './cvPdfTypes';
 import styles from './cv.module.scss';
 
 /** Marcador en `matchpointDescription` (solo icono en web); en PDF se omite. */
@@ -39,6 +39,8 @@ const MIRALAB_SITE_URL = 'https://miralab.ar';
 /** URL pública de este CV (sin barra final). Configurable para dominio propio. */
 const CV_SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://octapf.github.io/cv-web').replace(/\/$/, '');
 const MIRALAB_LOGO_IMAGE = '/images/miralab-logo-transparent.png';
+/** Same base path as next.config.ts; next/image does not prefix string `src` values with it. */
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 function FeaturedProjectBody({ text, googlePlayAria }: { text: string; googlePlayAria: string }) {
   if (!text.includes(PLAYSTORE_PLACEHOLDER)) {
@@ -119,7 +121,7 @@ const PDF_BULLET_INDEXES: Partial<Record<(typeof EXPERIENCE_ROLES)[number]['bull
 /** Education lines kept in the PDF: AI engineering study (Feb–May 2026) and IT Academy; the web lists every course. */
 const PDF_EDUCATION_INDEXES = [0, 1];
 
-/** Featured projects are covered by the MIRALAB role in the one-page PDF; the web page keeps them. */
+/** Featured projects are covered by the MIRALAB role in the one-page PDF; the web page always shows them. */
 const PDF_SHOW_FEATURED_PROJECTS = false;
 
 export async function generateMetadata({ params }: CvPageProps): Promise<Metadata> {
@@ -171,6 +173,51 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
     };
   });
 
+  /** Shown on the web page always; the PDF only includes them when PDF_SHOW_FEATURED_PROJECTS is on. */
+  const featuredProjects: CvPdfFeaturedProject[] = [
+    {
+      title: t('matchpointTitle'),
+      description: t('matchpointDescription'),
+      stackLabel: t('matchpointStackLabel'),
+      stack: t('matchpointStack'),
+      repoUrl: MATCHPOINT_REPO_URL,
+      imageAlt: t('matchpointImageAlt'),
+      imageLinkAria: t('matchpointImageLinkAria'),
+      imageWidth: 1200,
+      imageHeight: 586,
+      imageComfortPadding: true,
+      matchpointWordmark: true,
+      matchpointWordmarkVariant: 'mobile',
+    },
+    {
+      title: t('matchpointWebTitle'),
+      description: t('matchpointWebDescription'),
+      stackLabel: t('matchpointStackLabel'),
+      stack: t('matchpointWebStack'),
+      repoUrl: MATCHPOINT_WEB_REPO_URL,
+      imageAlt: t('matchpointWebImageAlt'),
+      imageLinkAria: t('matchpointWebImageLinkAria'),
+      imageWidth: 1200,
+      imageHeight: 586,
+      imageComfortPadding: true,
+      matchpointWordmark: true,
+      matchpointWordmarkVariant: 'web',
+    },
+    {
+      title: t('miralabTitle'),
+      description: t('miralabDescription'),
+      stackLabel: t('matchpointStackLabel'),
+      stack: t('miralabStack'),
+      repoUrl: MIRALAB_SITE_URL,
+      imageSrc: MIRALAB_LOGO_IMAGE,
+      imageAlt: t('miralabImageAlt'),
+      imageLinkAria: t('miralabImageLinkAria'),
+      imageWidth: 1200,
+      imageHeight: 272,
+      imageComfortPadding: true,
+    },
+  ];
+
   const cvPdfPayload: CvPdfPayload = {
     pdfLanguage: locale === 'es' ? 'es' : locale === 'it' ? 'it' : 'en',
     metaTitle: t('metaTitle'),
@@ -185,7 +232,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
     linkedinLabel: t('linkedin'),
     githubUrl: 'https://github.com/octapf',
     githubLabel: t('github'),
-    portfolioUrl: 'https://miralab.ar',
+    portfolioUrl: MIRALAB_SITE_URL,
     portfolioLabel: t('portfolio'),
     fullCvUrl: `${CV_SITE_URL}/${locale}/cv/`,
     fullCvLabel: t('pdfFullCvLabel'),
@@ -210,60 +257,22 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
     sectionFeaturedProjects: t('sectionFeaturedProjects'),
     featuredQuickLinkWeb: t('featuredQuickLinkWeb'),
     featuredQuickLinkGithub: t('featuredQuickLinkGithub'),
-    featuredProjects: PDF_SHOW_FEATURED_PROJECTS
-      ? [
-          {
-            title: t('matchpointTitle'),
-            description: t('matchpointDescription'),
-            stackLabel: t('matchpointStackLabel'),
-            stack: t('matchpointStack'),
-            repoUrl: MATCHPOINT_REPO_URL,
-            imageAlt: t('matchpointImageAlt'),
-            imageLinkAria: t('matchpointImageLinkAria'),
-            imageWidth: 1200,
-            imageHeight: 586,
-            imageComfortPadding: true,
-            matchpointWordmark: true,
-            matchpointWordmarkVariant: 'mobile',
-          },
-          {
-            title: t('matchpointWebTitle'),
-            description: t('matchpointWebDescription'),
-            stackLabel: t('matchpointStackLabel'),
-            stack: t('matchpointWebStack'),
-            repoUrl: MATCHPOINT_WEB_REPO_URL,
-            imageAlt: t('matchpointWebImageAlt'),
-            imageLinkAria: t('matchpointWebImageLinkAria'),
-            imageWidth: 1200,
-            imageHeight: 586,
-            imageComfortPadding: true,
-            matchpointWordmark: true,
-            matchpointWordmarkVariant: 'web',
-          },
-          {
-            title: t('miralabTitle'),
-            description: t('miralabDescription'),
-            stackLabel: t('matchpointStackLabel'),
-            stack: t('miralabStack'),
-            repoUrl: MIRALAB_SITE_URL,
-            imageSrc: MIRALAB_LOGO_IMAGE,
-            imageAlt: t('miralabImageAlt'),
-            imageLinkAria: t('miralabImageLinkAria'),
-            imageWidth: 1200,
-            imageHeight: 272,
-            imageComfortPadding: true,
-          },
-        ]
-      : [],
+    featuredProjects: PDF_SHOW_FEATURED_PROJECTS ? featuredProjects : [],
   };
 
   return (
     <main className={styles.page}>
       <div className={styles.topBar}>
-        <Link href={`/${locale}`} className={styles.backLink} aria-label={t('backAria')}>
-          <span aria-hidden="true">←</span>
-          <span>{t('back')}</span>
-        </Link>
+        <a
+          href={MIRALAB_SITE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.backLink}
+          aria-label={t('portfolioLinkAria')}
+        >
+          <span>{t('portfolio')}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
         <CvPageActions
           key={locale}
           locale={locale}
@@ -555,7 +564,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
             {t('sectionFeaturedProjects')}
           </h2>
           <div className={styles.featuredProjectsList}>
-            {cvPdfPayload.featuredProjects.map((fp) => (
+            {featuredProjects.map((fp) => (
               <article key={fp.repoUrl} className={styles.featuredProject} aria-label={fp.title}>
                 <div className={styles.featuredProjectImageWrap}>
                   <Link
@@ -578,7 +587,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
                       />
                     ) : (
                       <Image
-                        src={fp.imageSrc ?? ''}
+                        src={fp.imageSrc ? `${BASE_PATH}${fp.imageSrc}` : ''}
                         alt={fp.imageAlt}
                         fill
                         className={
@@ -670,10 +679,16 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
       </div>
 
       <div className={styles.bottomActions} aria-label={t('langSwitchAria')}>
-        <Link href={`/${locale}`} className={styles.bottomBackLink} aria-label={t('backAria')}>
-          <span aria-hidden="true">←</span>
-          <span>{t('back')}</span>
-        </Link>
+        <a
+          href={MIRALAB_SITE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.bottomBackLink}
+          aria-label={t('portfolioLinkAria')}
+        >
+          <span>{t('portfolio')}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
         <CvPageActions
           key={`${locale}-bottom`}
           locale={locale}

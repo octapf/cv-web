@@ -1,13 +1,21 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import '@/styles/globals.scss';
 
-export const metadata: Metadata = {
-  title: 'CV – Octavio Frangipani',
-  description:
-    'Senior Full Stack Developer (React, TypeScript, Next.js, Python/FastAPI). Currículum en español, inglés e italiano.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'cvOctavio' });
+
+  return {
+    title: 'CV – Octavio Frangipani',
+    description: t('siteDescription'),
+  };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'es' }, { locale: 'en' }, { locale: 'it' }];
