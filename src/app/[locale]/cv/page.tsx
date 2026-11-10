@@ -137,7 +137,9 @@ export async function generateMetadata({ params }: CvPageProps): Promise<Metadat
       url: `${CV_SITE_URL}/${locale}/cv/`,
       siteName: 'Octavio Frangipani',
       type: 'website',
+      images: [{ url: `${CV_SITE_URL}/og-cv.png`, width: 1200, height: 627, alt: 'Octavio Frangipani — Senior Full Stack Engineer' }],
     },
+    twitter: { card: 'summary_large_image', images: [`${CV_SITE_URL}/og-cv.png`] },
   };
 }
 
