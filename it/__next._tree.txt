@@ -1,0 +1,2 @@
+:HL["/cv-web/_next/static/chunks/10b5111e67da2fa5.css","style"]
+0:{"buildId":"D_LreRENGEpZCwNM4KFAz","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"locale","paramType":"d","paramKey":"it","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true}},"isRootLayout":false},"staleTime":300}
