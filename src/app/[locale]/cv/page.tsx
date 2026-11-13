@@ -116,7 +116,7 @@ const PDF_BULLET_INDEXES: Partial<Record<(typeof EXPERIENCE_ROLES)[number]['bull
   {
     roleDatadopeBullets: [0, 6, 4],
     roleMiralabBullets: [1],
-    roleMinsaitBullets: [0, 1, 5],
+    roleMinsaitBullets: [0, 5],
     roleUrbanyBullets: [],
     roleWorksutBullets: [],
     roleLetiziaBullets: [],
@@ -147,7 +147,7 @@ export async function generateMetadata({ params }: CvPageProps): Promise<Metadat
           url: `${CV_SITE_URL}/og-cv.png`,
           width: 1200,
           height: 627,
-          alt: 'Octavio Frangipani — Senior Full Stack Engineer',
+          alt: 'Octavio Frangipani — Senior Full Stack & AI Engineer',
         },
       ],
     },

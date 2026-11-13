@@ -1,8 +1,8 @@
 {
   "cvOctavio": {
     "metaTitle": "Octavio Frangipani — CV",
-    "siteDescription": "Senior Full Stack Engineer (React, TypeScript, Next.js, Python/FastAPI). Currículum en español, inglés e italiano.",
-    "metaDescription": "Senior Full Stack Engineer (React, TypeScript, Next.js, Python/FastAPI). Interfaces en tiempo real, productos con IA, testing y arquitecturas de UI escalables.",
+    "siteDescription": "Senior Full Stack & AI Engineer (React, TypeScript, Next.js, Python/FastAPI). Currículum en español, inglés e italiano.",
+    "metaDescription": "Senior Full Stack & AI Engineer (React, TypeScript, Next.js, Python/FastAPI). Interfaces en tiempo real, productos con IA, testing y arquitecturas de UI escalables.",
     "langSwitchAria": "Idioma de la página",
     "langEs": "ES",
     "langEn": "EN",
@@ -11,9 +11,9 @@
     "pdfDownload": "Descargar CV en PDF",
     "pdfGenerating": "Generando…",
     "pdfAria": "Descargar el CV en PDF",
-    "pdfFilename": "cv-octavio-frangipani-senior-full-stack-engineer-ES.pdf",
+    "pdfFilename": "cv-octavio-frangipani-senior-full-stack-ai-engineer-ES.pdf",
     "pdfFullCvLabel": "CV completo y proyectos",
-    "headline": "Senior Full Stack Engineer | React | TypeScript | Next.js | Node.js | Python | FastAPI",
+    "headline": "Senior Full Stack & AI Engineer | React | TypeScript | Next.js | Node.js | Python | FastAPI",
     "metaContactAria": "Contacto y enlaces",
     "location": "Buenos Aires, Argentina · Remoto (GMT-3) · Ciudadano de la UE",
     "whatsappAria": "Enviar mensaje por WhatsApp a +34 722 696 514 (España)",
@@ -25,8 +25,8 @@
     "langSpanish": "Español nativo",
     "langEnglish": "Inglés C1 (profesional)",
     "sectionSummary": "Resumen profesional",
-    "summaryRich": "Senior Full Stack Engineer con más de 5 años de experiencia en <k>tecnologías de la información</k> y un fuerte foco en frontend. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend <k>Next.js</k> y el backend <k>Python</k>/<k>FastAPI</k>/<k>PostgreSQL</k>: interfaces en <k>tiempo real</k> por WebSockets, seguridad, rendimiento y <k>accesibilidad</k>. Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> con <k>Webpack Module Federation</k> para <k>Zara/Inditex</k>, una de las mayores marcas retail del mundo. Especializado en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>, con sólida experiencia en <k>TDD</k>, <k>tests end-to-end</k> y <k>refactorización</k> continua. Colaboración estrecha en equipos ágiles junto a <k>UX/UI</k> para convertir <k>wireframes</k> en interfaces pixel-perfect y accesibles. Impulso de la cultura de <k>revisión de código</k> y del <k>desarrollo asistido por IA</k>. Desde Argentina (GMT-3), con solapamiento completo con horario de EE. UU. y por la mañana con Europa; ciudadano de la UE; disponible para proyectos remotos como contractor o a tiempo completo.",
-    "summaryPdfRich": "Senior Full Stack Engineer con más de 5 años de experiencia y un fuerte foco en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend Next.js y el backend <k>Python/FastAPI</k>. Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> para <k>Zara/Inditex</k> y aceleré un <k>25%</k> la entrega de funcionalidades con desarrollo asistido por IA.",
+    "summaryRich": "Senior Full Stack & AI Engineer con más de 5 años de experiencia en <k>tecnologías de la información</k> y un fuerte foco en frontend. Recientemente desarrollé una <k>plataforma de IA</k> para la investigación de incidencias en <k>Datadope</k>, en el frontend <k>Next.js</k> y el backend <k>Python</k>/<k>FastAPI</k>/<k>PostgreSQL</k>: interfaces en <k>tiempo real</k> por WebSockets, seguridad, rendimiento y <k>accesibilidad</k>. Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> con <k>Webpack Module Federation</k> para <k>Zara/Inditex</k>, una de las mayores marcas retail del mundo. En MIRALAB desarrollo aplicaciones con <k>LLMs</k>: el asistente de WhatsApp de <k>Changa</k> interpreta los pedidos con la <k>API de Claude</k> (<k>tool use</k>) para crear presupuestos y consultar la agenda, con respaldo por reglas si la IA falla. Especializado en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>, con sólida experiencia en <k>TDD</k>, <k>tests end-to-end</k> y <k>refactorización</k> continua. Colaboración estrecha en equipos ágiles junto a <k>UX/UI</k> para convertir <k>wireframes</k> en interfaces pixel-perfect y accesibles. Impulso de la cultura de <k>revisión de código</k> y del <k>desarrollo asistido por agentes de IA</k> (Claude Code, Cursor). Desde Argentina (GMT-3), con solapamiento completo con horario de EE. UU. y por la mañana con Europa; ciudadano de la UE; disponible para proyectos remotos como contractor o a tiempo completo.",
+    "summaryPdfRich": "Senior Full Stack & AI Engineer con más de 5 años de experiencia y un fuerte foco en <k>React</k>, <k>TypeScript</k> y <k>Next.js</k>. Recientemente desarrollé una <k>plataforma de IA</k> para investigar incidencias en <k>Datadope</k> (Next.js y <k>Python/FastAPI</k>) y, en MIRALAB, apps con <k>LLMs</k> (API de Claude, tool use). Antes diseñé la arquitectura de un <k>sistema de microfrontends</k> para <k>Zara/Inditex</k> y aceleré un <k>25%</k> la entrega con desarrollo asistido por IA.",
     "sectionSkills": "Habilidades técnicas",
     "skillFrontendTitle": "Frontend",
     "skillFrontendBody": "React · TypeScript · Next.js · Redux · Zustand · TanStack Query · React Native · Expo · ES6 · WebSockets · WCAG · Responsive",
@@ -50,14 +50,14 @@
       "Rendimiento (virtualización de listas, profiling bajo carga), accesibilidad WCAG 2.2 AA y testing con Playwright, Vitest y pytest; más de 110 MR mergeados con flujos asistidos por IA (Claude Code, Cursor).",
       "Ayudé a replantear el flujo de trabajo del equipo para el desarrollo asistido por IA: tareas de punta a punta más abarcativas en lugar de tickets chicos de Jira, MRs más grandes con revisiones automáticas y con agentes, y una nueva forma de sincronizar entre equipos."
     ],
-    "roleMiralabTitle": "Founder & Full Stack Developer",
+    "roleMiralabTitle": "Founder · Full Stack & AI Engineer",
     "roleMiralabMeta": "Dic 2025 – Actualidad",
     "roleMiralabCompany": "MIRALAB · Buenos Aires (Remoto · Emprendimiento propio)",
     "roleMiralabBullets": [
       "Mi propio estudio de ingeniería digital: aplicaciones web y móviles, soluciones con IA y consultoría técnica.",
       "Matchpoint: app Android (Google Play) para torneos de vóley playa, desarrollada con Expo, React Native, TypeScript, Zustand, TanStack Query, una API serverless en Vercel y MongoDB.",
       "Matchpoint Web: sitio público en Next.js con torneos, equipos, partidos y clasificaciones; miralab.ar: web del estudio en tres idiomas.",
-      "Changa: app para trabajadores de oficios (página propia, presupuestos por WhatsApp, agenda y clientes) con Expo, React Native, Next.js y Supabase; núcleo de dominio compartido en TypeScript, Postgres con RLS y tests de contrato. En desarrollo, en changa.miralab.ar."
+      "Changa: app para trabajadores de oficios (página propia, presupuestos por WhatsApp, agenda y clientes) con Expo, React Native, Next.js y Supabase; núcleo de dominio compartido en TypeScript, Postgres con RLS y tests de contrato; asistente de WhatsApp con la API de Claude (tool use). En desarrollo, en changa.miralab.ar."
     ],
     "roleMinsaitTitle": "Software Engineer",
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
