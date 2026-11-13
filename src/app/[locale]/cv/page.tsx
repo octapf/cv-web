@@ -36,8 +36,13 @@ const MATCHPOINT_REPO_URL = 'https://github.com/miralab-ar/matchpoint';
 const MATCHPOINT_WEB_REPO_URL = 'https://github.com/miralab-ar/matchpoint-web';
 const MATCHPOINT_WEB_SITE_URL = 'https://matchpoint.miralab.ar/';
 const MIRALAB_SITE_URL = 'https://miralab.ar';
+const CHANGA_SITE_URL = 'https://changa.miralab.ar';
+const CHANGA_LOGO_IMAGE = '/images/changa-logo.png';
 /** URL pública de este CV (sin barra final). Configurable para dominio propio. */
-const CV_SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://octapf.github.io/cv-web').replace(/\/$/, '');
+const CV_SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://octapf.github.io/cv-web').replace(
+  /\/$/,
+  ''
+);
 const MIRALAB_LOGO_IMAGE = '/images/miralab-logo-transparent.png';
 /** Same base path as next.config.ts; next/image does not prefix string `src` values with it. */
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -137,7 +142,14 @@ export async function generateMetadata({ params }: CvPageProps): Promise<Metadat
       url: `${CV_SITE_URL}/${locale}/cv/`,
       siteName: 'Octavio Frangipani',
       type: 'website',
-      images: [{ url: `${CV_SITE_URL}/og-cv.png`, width: 1200, height: 627, alt: 'Octavio Frangipani — Senior Full Stack Engineer' }],
+      images: [
+        {
+          url: `${CV_SITE_URL}/og-cv.png`,
+          width: 1200,
+          height: 627,
+          alt: 'Octavio Frangipani — Senior Full Stack Engineer',
+        },
+      ],
     },
     twitter: { card: 'summary_large_image', images: [`${CV_SITE_URL}/og-cv.png`] },
   };
@@ -216,6 +228,19 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
       imageLinkAria: t('miralabImageLinkAria'),
       imageWidth: 1200,
       imageHeight: 272,
+      imageComfortPadding: true,
+    },
+    {
+      title: t('changaTitle'),
+      description: t('changaDescription'),
+      stackLabel: t('matchpointStackLabel'),
+      stack: t('changaStack'),
+      repoUrl: CHANGA_SITE_URL,
+      imageSrc: CHANGA_LOGO_IMAGE,
+      imageAlt: t('changaImageAlt'),
+      imageLinkAria: t('changaImageLinkAria'),
+      imageWidth: 512,
+      imageHeight: 512,
       imageComfortPadding: true,
     },
   ];
@@ -658,6 +683,23 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
                       rel="noopener noreferrer"
                       className={styles.featuredProjectQuickLink}
                       aria-label={t('featuredOpenMiralabSiteAria')}
+                    >
+                      <span className={styles.featuredProjectQuickLinkLabel}>
+                        {t('featuredQuickLinkWeb')}
+                      </span>
+                    </Link>
+                  </div>
+                ) : fp.repoUrl === CHANGA_SITE_URL ? (
+                  <div
+                    className={`${styles.featuredProjectQuickLinks} ${styles.featuredProjectQuickLinksSingle}`}
+                    aria-label={t('featuredQuickLinksChangaGroupAria')}
+                  >
+                    <Link
+                      href={CHANGA_SITE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.featuredProjectQuickLink}
+                      aria-label={t('featuredOpenChangaSiteAria')}
                     >
                       <span className={styles.featuredProjectQuickLinkLabel}>
                         {t('featuredQuickLinkWeb')}

@@ -56,7 +56,8 @@
     "roleMiralabBullets": [
       "Studio di ingegneria digitale in proprio: app web e mobile, soluzioni basate sull'IA e consulenza tecnica.",
       "Matchpoint: app Android (Google Play) per tornei di beach volley, sviluppata con Expo, React Native, TypeScript, Zustand, TanStack Query, un'API serverless su Vercel e MongoDB.",
-      "Matchpoint Web: sito pubblico in Next.js con tornei, squadre, partite e classifiche; miralab.ar: sito dello studio in tre lingue."
+      "Matchpoint Web: sito pubblico in Next.js con tornei, squadre, partite e classifiche; miralab.ar: sito dello studio in tre lingue.",
+      "Changa: app per artigiani (pagina pubblica, preventivi via WhatsApp, agenda e clienti) realizzata con Expo, React Native, Next.js e Supabase; core di dominio condiviso in TypeScript, Postgres con RLS e test di contratto. In sviluppo, su changa.miralab.ar."
     ],
     "roleMinsaitTitle": "Software Engineer",
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
@@ -106,6 +107,8 @@
     "featuredOpenMatchpointWebSiteAria": "Apri Matchpoint Web",
     "featuredOpenGithubRepoAria": "Apri il repository su GitHub",
     "featuredOpenMiralabSiteAria": "Apri Miralab",
+    "featuredQuickLinksChangaGroupAria": "Collegamenti rapidi Changa",
+    "featuredOpenChangaSiteAria": "Apri Changa",
     "featuredQuickLinkWeb": "Web",
     "featuredQuickLinkGithub": "GitHub",
     "googlePlayAria": "Google Play",
@@ -125,6 +128,11 @@
     "miralabTitle": "Miralab",
     "miralabDescription": "Sito istituzionale MIRALAB (attività personale): ingegneria digitale —web, mobile, consulenza— con soluzioni scalabili e UX curata. Portfolio con progetti reali, contatti e termini/privacy pubblici.",
     "miralabStack": "",
+    "changaTitle": "Changa",
+    "changaDescription": "Changa: app mobile e web per chi vive di un mestiere (idraulici, tecnici del gas, elettricisti): pagina pubblica per ogni professionista, preventivi in tre passi con PDF e link per accettarli o rifiutarli via WhatsApp, agenda degli appuntamenti con promemoria e schede clienti. Modalità demo senza account. In sviluppo.",
+    "changaStack": "Expo · React Native · Expo Router · TypeScript · TanStack Query · Next.js (App Router) · Tailwind CSS · Supabase (Postgres, RLS, Auth) · zod · Vitest · Playwright",
+    "changaImageAlt": "Icona di Changa",
+    "changaImageLinkAria": "Apri il sito changa.miralab.ar",
     "educationLines": [
       "AI Engineering · Formazione IA e corsi di Claude Code: API LLM, agenti, RAG Feb–Mag 2026",
       "Full Stack Web Developer · IT Academy – Barcelona Activa Apr–Ago 2023",
