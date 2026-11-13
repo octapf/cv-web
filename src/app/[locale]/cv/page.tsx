@@ -37,6 +37,7 @@ const MATCHPOINT_WEB_REPO_URL = 'https://github.com/miralab-ar/matchpoint-web';
 const MATCHPOINT_WEB_SITE_URL = 'https://matchpoint.miralab.ar/';
 const MIRALAB_SITE_URL = 'https://miralab.ar';
 const CHANGA_SITE_URL = 'https://changa.miralab.ar';
+const CHANGA_ASSISTANT_URL = `${CHANGA_SITE_URL}/asistente`;
 const CHANGA_LOGO_IMAGE = '/images/changa-logo.png';
 /** URL pública de este CV (sin barra final). Configurable para dominio propio. */
 const CV_SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://octapf.github.io/cv-web').replace(
@@ -691,7 +692,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
                   </div>
                 ) : fp.repoUrl === CHANGA_SITE_URL ? (
                   <div
-                    className={`${styles.featuredProjectQuickLinks} ${styles.featuredProjectQuickLinksSingle}`}
+                    className={styles.featuredProjectQuickLinks}
                     aria-label={t('featuredQuickLinksChangaGroupAria')}
                   >
                     <Link
@@ -703,6 +704,17 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
                     >
                       <span className={styles.featuredProjectQuickLinkLabel}>
                         {t('featuredQuickLinkWeb')}
+                      </span>
+                    </Link>
+                    <Link
+                      href={CHANGA_ASSISTANT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.featuredProjectQuickLink}
+                      aria-label={t('featuredOpenChangaAssistantAria')}
+                    >
+                      <span className={styles.featuredProjectQuickLinkLabel}>
+                        {t('featuredQuickLinkAssistant')}
                       </span>
                     </Link>
                   </div>
