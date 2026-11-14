@@ -57,7 +57,8 @@
       "Studio di ingegneria digitale in proprio: app web e mobile, soluzioni basate sull'IA e consulenza tecnica.",
       "Matchpoint: app Android (Google Play) per tornei di beach volley, sviluppata con Expo, React Native, TypeScript, Zustand, TanStack Query, un'API serverless su Vercel e MongoDB.",
       "Matchpoint Web: sito pubblico in Next.js con tornei, squadre, partite e classifiche; miralab.ar: sito dello studio in tre lingue.",
-      "Changa: app per artigiani (pagina pubblica, preventivi via WhatsApp, agenda e clienti) realizzata con Expo, React Native, Next.js e Supabase; core di dominio condiviso in TypeScript, Postgres con RLS e test di contratto; assistente WhatsApp basato sulla Claude API (tool use). In sviluppo, su changa.miralab.ar."
+      "Changa: app per artigiani (pagina pubblica, preventivi via WhatsApp, agenda e clienti) realizzata con Expo, React Native, Next.js e Supabase; core di dominio condiviso in TypeScript, Postgres con RLS e test di contratto; assistente WhatsApp basato sulla Claude API (tool use). In sviluppo, su changa.miralab.ar.",
+      "App Miralab: l'app Android dello studio con vetrina dei progetti, richiesta di preventivi e un assistente IA (API di OpenAI) servito da un endpoint Next.js con validazione e limite di utilizzo; Expo, React Native, Expo Router e TypeScript, compilata con EAS."
     ],
     "roleMinsaitTitle": "Software Engineer",
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
