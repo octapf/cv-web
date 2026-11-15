@@ -57,8 +57,9 @@
       "Studio di ingegneria digitale in proprio: app web e mobile, soluzioni basate sull'IA e consulenza tecnica.",
       "Matchpoint: app Android (Google Play) per tornei di beach volley, sviluppata con Expo, React Native, TypeScript, Zustand, TanStack Query, un'API serverless su Vercel e MongoDB.",
       "Matchpoint Web: sito pubblico in Next.js con tornei, squadre, partite e classifiche; miralab.ar: sito dello studio in tre lingue.",
-      "Changa: app per artigiani (pagina pubblica, preventivi via WhatsApp, agenda e clienti) realizzata con Expo, React Native, Next.js e Supabase; core di dominio condiviso in TypeScript, Postgres con RLS e test di contratto; assistente WhatsApp basato sulla Claude API (tool use). In sviluppo, su changa.miralab.ar.",
-      "App Miralab: l'app Android dello studio con vetrina dei progetti, richiesta di preventivi e un assistente IA (API di OpenAI) servito da un endpoint Next.js con validazione e limite di utilizzo; Expo, React Native, Expo Router e TypeScript, compilata con EAS."
+      "Changa: app per artigiani (pagina pubblica, preventivi via WhatsApp, agenda e clienti) realizzata con Expo, React Native, Next.js e Supabase; core di dominio condiviso in TypeScript, Postgres con RLS e test di contratto; assistente WhatsApp basato sulla Claude API (tool use). In test chiuso su Google Play, con sito e demo dell'assistente su changa.miralab.ar.",
+      "App Miralab: l'app Android dello studio con vetrina dei progetti, richiesta di preventivi e un assistente IA (API di OpenAI) servito da un endpoint Next.js con validazione e limite di utilizzo; Expo, React Native, Expo Router e TypeScript, compilata con EAS; in test chiuso su Google Play.",
+      "Rize: app di calisthenics con un coach IA basato sulla Claude API (piano adattivo, progressioni e allenamento dal vivo) con Expo, React Native, Next.js e Supabase; in test chiuso su Google Play, sito su rize.miralab.ar."
     ],
     "roleMinsaitTitle": "Software Engineer",
     "roleMinsaitMeta": "Feb 2024 – Feb 2026",
@@ -132,7 +133,7 @@
     "miralabDescription": "Sito istituzionale MIRALAB (attività personale): ingegneria digitale —web, mobile, consulenza— con soluzioni scalabili e UX curata. Portfolio con progetti reali, contatti e termini/privacy pubblici.",
     "miralabStack": "",
     "changaTitle": "Changa",
-    "changaDescription": "Changa: app mobile e web per chi vive di un mestiere (idraulici, tecnici del gas, elettricisti): pagina pubblica per ogni professionista, preventivi in tre passi con PDF e link per accettarli o rifiutarli via WhatsApp, agenda degli appuntamenti con promemoria e schede clienti. Modalità demo senza account. In sviluppo.",
+    "changaDescription": "Changa: app mobile e web per chi vive di un mestiere (idraulici, tecnici del gas, elettricisti): pagina pubblica per ogni professionista, preventivi in tre passi con PDF e link per accettarli o rifiutarli via WhatsApp, agenda degli appuntamenti con promemoria e schede clienti. Modalità demo senza account. In test chiuso su Google Play.",
     "changaStack": "Expo · React Native · Expo Router · TypeScript · TanStack Query · Next.js (App Router) · Tailwind CSS · Supabase (Postgres, RLS, Auth) · zod · Vitest · Playwright",
     "changaImageAlt": "Icona di Changa",
     "changaImageLinkAria": "Apri il sito changa.miralab.ar",
