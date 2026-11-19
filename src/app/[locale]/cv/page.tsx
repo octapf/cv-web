@@ -230,6 +230,7 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
       imageWidth: 1200,
       imageHeight: 272,
       imageComfortPadding: true,
+      imageOnWhite: true,
     },
     {
       title: t('changaTitle'),
@@ -594,7 +595,13 @@ export default async function CvOctavioFrangipaniPage({ params }: CvPageProps) {
           <div className={styles.featuredProjectsList}>
             {featuredProjects.map((fp) => (
               <article key={fp.repoUrl} className={styles.featuredProject} aria-label={fp.title}>
-                <div className={styles.featuredProjectImageWrap}>
+                <div
+                  className={
+                    fp.imageOnWhite
+                      ? `${styles.featuredProjectImageWrap} ${styles.featuredProjectImageWrapOnWhite}`
+                      : styles.featuredProjectImageWrap
+                  }
+                >
                   <Link
                     href={fp.repoUrl}
                     target="_blank"

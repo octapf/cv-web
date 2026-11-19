@@ -30,6 +30,8 @@ export type CvPdfFeaturedProject = {
   imageHeight: number;
   /** Aire dentro del marco (logos muy anchos al borde del PNG) */
   imageComfortPadding?: boolean;
+  /** Marco con fondo blanco (logo oficial de Miralab: siempre sobre blanco) */
+  imageOnWhite?: boolean;
   /** Escala ~+6–8% dentro del mismo marco (gráficos que se leen chicos con contain) */
   imageSlightScale?: boolean;
   /** Wordmark Matchpoint en PDF como texto (colores web), sin PNG */

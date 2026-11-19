@@ -495,6 +495,11 @@ $cv-card-radius: 16px;
   position: relative;
 }
 
+/* Logo oficial de Miralab: siempre sobre blanco, también en tema oscuro */
+.featuredProjectImageWrapOnWhite {
+  background: #ffffff;
+}
+
 /*
  * Hijo absolute + inset:0 ignora el padding del padre (se posiciona al padding edge).
  * Miralab: top/right/bottom/left explícitos = margen interior real.
