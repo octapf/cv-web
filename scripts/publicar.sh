@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Publica el CV en GitHub Pages (https://octapf.github.io/cv-web/) y activa la redirección
-# desde los enlaces viejos de miralab.ar/<idioma>/cv. Uso: bash scripts/publicar.sh
+# Publica el CV en GitHub Pages (https://octapf.github.io/cv-web/). Uso: bash scripts/publicar.sh
 set -euo pipefail
 CV=~/Escritorio/personal-repos/cv-web
-WEB=~/Escritorio/personal-repos/miralab-web
 TMP=$(mktemp -d)
 
 cd "$CV"
@@ -25,6 +23,3 @@ for i in $(seq 1 40); do
 done
 curl -s -o /dev/null -w 'CV en vivo: %{http_code}\n' https://octapf.github.io/cv-web/en/cv/
 
-cd "$WEB"
-git checkout -q master && git merge -q --ff-only redireccion-cv && git push -q origin master
-echo "Redirección pusheada: miralab.ar/en/cv -> CV nuevo (Vercel despliega en 1-2 min)."
