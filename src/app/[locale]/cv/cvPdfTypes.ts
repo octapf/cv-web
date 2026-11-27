@@ -2,7 +2,7 @@ export type CvPdfSkill = { title: string; body: string };
 
 export type CvPdfContactLink = { label: string; href: string };
 
-export type CvPdfBullet = { text: string; accent?: boolean };
+export type CvPdfBullet = { text: string };
 
 export type CvPdfRole = {
   title: string;
@@ -12,39 +12,15 @@ export type CvPdfRole = {
 };
 
 export type CvPdfEducationLine =
-  | { kind: 'plain'; text: string }
-  | { kind: 'split'; title: string; rest: string };
-
-export type CvPdfFeaturedProject = {
-  title: string;
-  description: string;
-  stackLabel: string;
-  stack: string;
-  /** Target URL for the clickable image (repo, site, etc.) */
-  repoUrl: string;
-  /** Public path (e.g. `/images/...`) or absolute URL; PDF resolves against `window.location.origin` in the browser */
-  imageSrc?: string;
-  imageAlt: string;
-  imageLinkAria: string;
-  imageWidth: number;
-  imageHeight: number;
-  /** Aire dentro del marco (logos muy anchos al borde del PNG) */
-  imageComfortPadding?: boolean;
-  /** Marco con fondo blanco (logo oficial de Miralab: siempre sobre blanco) */
-  imageOnWhite?: boolean;
-  /** Escala ~+6–8% dentro del mismo marco (gráficos que se leen chicos con contain) */
-  imageSlightScale?: boolean;
-  /** Wordmark Matchpoint en PDF como texto (colores web), sin PNG */
-  matchpointWordmark?: boolean;
-  /** Etiqueta bajo el wordmark: app móvil vs sitio web */
-  matchpointWordmarkVariant?: 'mobile' | 'web';
-};
+  { kind: 'plain'; text: string } | { kind: 'split'; title: string; rest: string };
 
 export type CvPdfPayload = {
   /** BCP 47 tag for PDF metadata / accessibility */
   pdfLanguage: string;
   metaTitle: string;
   headline: string;
+  headlineStack: string;
+  availability: string;
   location: string;
   whatsapp: CvPdfContactLink[];
   email: string;
@@ -67,9 +43,4 @@ export type CvPdfPayload = {
   roles: CvPdfRole[];
   sectionEducation: string;
   education: CvPdfEducationLine[];
-  sectionFeaturedProjects: string;
-  featuredProjects: CvPdfFeaturedProject[];
-  /** Etiquetas de enlaces rápidos en bloques de proyectos (PDF, mismo locale que la página) */
-  featuredQuickLinkWeb: string;
-  featuredQuickLinkGithub: string;
 };

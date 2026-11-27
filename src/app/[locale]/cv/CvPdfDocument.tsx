@@ -1,455 +1,173 @@
-import {
-  Document,
-  Image,
-  Link,
-  Page,
-  Path,
-  StyleSheet,
-  Svg,
-  Text,
-  View,
-} from '@react-pdf/renderer';
+import { Document, Link, Page, Path, StyleSheet, Svg, Text, View } from '@react-pdf/renderer';
 import { Fragment } from 'react';
-import type { CvPdfFeaturedProject, CvPdfPayload, CvPdfRole } from './cvPdfTypes';
-import { CV_PDF_BOLD, CV_PDF_BOLD_ITALIC, CV_PDF_ITALIC, CV_PDF_REGULAR } from './cvPdfConstants';
+import type { CvPdfPayload, CvPdfRole } from './cvPdfTypes';
+import { CV_PDF_BOLD, CV_PDF_REGULAR } from './cvPdfConstants';
 
+/** Print-first palette: white page, near-black text, one dark accent (AA on white). */
 const palette = {
-  bgPage: '#030014',
-  cardBg: '#12121e',
-  skillCardBg: '#16161f',
-  skillCardBorder: '#35354a',
-  text: '#ffffff',
-  body: '#d4d4d8',
-  muted: '#b3b3b3',
-  accent: '#8b5cf6',
+  bgPage: '#ffffff',
+  text: '#111827',
+  body: '#374151',
+  muted: '#4b5563',
+  accent: '#5b21b6',
+  rule: '#d1d5db',
 };
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 20,
+    paddingHorizontal: 34,
     fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.8,
+    fontSize: 9.4,
     color: palette.body,
     backgroundColor: palette.bgPage,
-  },
-  headerCard: {
-    backgroundColor: palette.cardBg,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 6,
-    borderRadius: 8,
-  },
-  nameRow: {
-    width: '100%',
-    marginBottom: 6,
-    paddingBottom: 0,
   },
   name: {
     fontFamily: CV_PDF_BOLD,
     fontSize: 22,
     color: palette.text,
-    lineHeight: 1.12,
-    textAlign: 'left',
-  },
-  headlineRow: {
-    width: '100%',
-    marginTop: 2,
-    marginBottom: 5,
+    lineHeight: 1.1,
   },
   headline: {
     fontFamily: CV_PDF_BOLD,
-    fontSize: 11.2,
+    fontSize: 12,
     color: palette.accent,
-    lineHeight: 1.38,
-    textAlign: 'left',
+    marginTop: 4,
   },
-  /* Igual que .meta en la web: una sola franja con wrap */
+  headlineStack: {
+    fontSize: 9.4,
+    color: palette.body,
+    marginTop: 2,
+  },
+  availability: {
+    fontFamily: CV_PDF_BOLD,
+    fontSize: 9.2,
+    color: palette.text,
+    marginTop: 4,
+  },
   metaFlow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    width: '100%',
     marginTop: 6,
   },
   metaChunk: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginRight: 9,
     marginBottom: 3,
-    marginRight: 2,
   },
   metaIconSlot: {
-    width: 11,
+    width: 10,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 3,
   },
   metaText: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.6,
+    fontSize: 8.9,
     color: palette.muted,
-    lineHeight: 1.4,
   },
   link: {
-    fontFamily: CV_PDF_REGULAR,
+    fontSize: 8.9,
     color: palette.muted,
-    fontSize: 9.6,
-    textDecoration: 'underline',
+    textDecoration: 'none',
   },
-  sep: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.6,
-    color: palette.muted,
-  },
-  langsInline: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.6,
-    color: palette.muted,
-    lineHeight: 1.4,
-  },
-  langsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginTop: 5,
-  },
-  /* Igual que .section en la web: bloque con fondo de tarjeta */
-  sectionCard: {
-    marginTop: 5,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    backgroundColor: palette.cardBg,
-    borderRadius: 10,
-  },
-  sectionCardFirst: {
-    marginTop: 7,
+  section: {
+    marginTop: 8,
   },
   sectionTitle: {
     fontFamily: CV_PDF_BOLD,
-    fontSize: 11.2,
+    fontSize: 10,
     color: palette.accent,
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    textAlign: 'center',
-    marginBottom: 6,
+    letterSpacing: 0.8,
+    paddingBottom: 2,
+    marginBottom: 5,
+    borderBottomWidth: 0.75,
+    borderBottomColor: palette.rule,
   },
   summary: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.6,
-    color: palette.muted,
-    lineHeight: 1.38,
-    textAlign: 'justify',
+    fontSize: 9.3,
+    color: palette.body,
+    lineHeight: 1.42,
   },
   summaryEm: {
     fontFamily: CV_PDF_BOLD,
-    fontSize: 10,
     color: palette.text,
   },
-  skillsGrid: {
-    width: '100%',
-  },
-  skillRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 9,
-  },
-  skillRowLast: {
-    marginBottom: 0,
-  },
-  skillCard: {
-    width: '48.5%',
-    backgroundColor: palette.skillCardBg,
-    borderWidth: 1,
-    borderColor: palette.skillCardBorder,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 7,
-  },
-  skillTitle: {
-    fontFamily: CV_PDF_BOLD,
-    fontSize: 10,
-    color: palette.text,
-    textAlign: 'center',
-    marginBottom: 4,
-  },
-  skillBody: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.2,
-    color: palette.muted,
-    textAlign: 'center',
-    lineHeight: 1.4,
-  },
-  experienceList: {
-    width: '100%',
-  },
-  roleBlock: {
-    marginBottom: 5,
-    paddingHorizontal: 0,
-    paddingVertical: 2,
-  },
-  roleTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 2,
-  },
-  roleTitle: {
-    fontFamily: CV_PDF_BOLD,
-    fontSize: 10.2,
-    color: palette.text,
-    flex: 1,
-    paddingRight: 6,
-    lineHeight: 1.2,
-  },
-  roleMeta: {
-    fontFamily: CV_PDF_BOLD,
-    fontSize: 9,
-    color: palette.muted,
-  },
-  roleCompany: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9,
-    color: palette.muted,
-    marginBottom: 3,
-    lineHeight: 1.3,
-  },
-  bulletRow: {
-    flexDirection: 'row',
-    marginBottom: 1,
-    paddingLeft: 1,
-  },
-  bulletDot: {
-    width: 9,
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 8.6,
-    color: palette.accent,
-  },
-  bulletText: {
-    flex: 1,
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9,
-    color: palette.muted,
-    lineHeight: 1.32,
-  },
-  bulletAccent: {
-    fontFamily: CV_PDF_BOLD,
-    color: palette.accent,
-  },
-  educationList: {
-    width: '100%',
-  },
-  /* Compact one-page layout: skills as lines, inline education, one-line older roles */
   skillLine: {
-    fontFamily: CV_PDF_REGULAR,
     fontSize: 9,
-    color: palette.muted,
-    lineHeight: 1.38,
+    color: palette.body,
+    lineHeight: 1.4,
     marginBottom: 1,
   },
   skillLineTitle: {
     fontFamily: CV_PDF_BOLD,
     color: palette.text,
   },
-  educationInline: {
-    fontFamily: CV_PDF_REGULAR,
+  roleBlock: {
+    marginBottom: 6,
+  },
+  roleBlockCompact: {
+    marginBottom: 3,
+  },
+  roleTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
+  roleTitle: {
+    fontFamily: CV_PDF_BOLD,
+    fontSize: 10,
+    color: palette.text,
+    flex: 1,
+    paddingRight: 6,
+  },
+  roleMeta: {
+    fontFamily: CV_PDF_BOLD,
+    fontSize: 8.9,
+    color: palette.muted,
+  },
+  roleCompany: {
     fontSize: 9,
     color: palette.muted,
-    lineHeight: 1.4,
+    marginTop: 1,
+    marginBottom: 2,
   },
   roleCompanyInline: {
     fontFamily: CV_PDF_REGULAR,
     fontSize: 9,
     color: palette.muted,
   },
-  educationRow: {
+  bulletRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 4,
-    paddingLeft: 2,
+    marginBottom: 1.5,
   },
-  educationBullet: {
-    width: 10,
-    fontFamily: CV_PDF_REGULAR,
+  bulletDot: {
+    width: 9,
     fontSize: 9,
     color: palette.accent,
-    lineHeight: 1.45,
+  },
+  bulletText: {
+    flex: 1,
+    fontSize: 9,
+    color: palette.body,
+    lineHeight: 1.36,
+  },
+  educationRow: {
+    flexDirection: 'row',
+    marginBottom: 1.5,
   },
   educationLine: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.3,
-    color: palette.muted,
-    lineHeight: 1.45,
-  },
-  featuredProjectsGrid: {
-    width: '100%',
-  },
-  featuredProjectsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginBottom: 8,
-  },
-  featuredProjectsRowLast: {
-    marginBottom: 0,
-  },
-  featuredProjectCell: {
-    width: '31.5%',
-    paddingHorizontal: 2,
-  },
-  featuredProject: {
-    width: '100%',
-  },
-  /** Mismo “thumbnail” para ambos proyectos (Miralab transparente + Matchpoint con arte oscuro) */
-  featuredImageSlot: {
-    width: '100%',
-    height: 72,
-    marginBottom: 5,
-    backgroundColor: '#16161f',
-    borderWidth: 1,
-    borderColor: '#35354a',
-    borderRadius: 5,
-    overflow: 'hidden',
-  },
-  featuredImageSlotWordmark: {
-    height: 72,
-  },
-  featuredImagePdfInnerDefault: {
-    flexGrow: 1,
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-    paddingVertical: 3,
-    paddingHorizontal: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  /** Mismo padding interior para Miralab (imagen) y Matchpoint (wordmark) */
-  featuredImagePdfPaddedInner: {
-    flexGrow: 1,
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-    paddingVertical: 5,
-    paddingHorizontal: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  featuredImage: {
-    objectFit: 'contain',
-  },
-  featuredImageSizeDefault: {
-    width: 110,
-    height: 53,
-  },
-  featuredImageSizeBoost: {
-    width: 120,
-    height: 57,
-  },
-  featuredDesc: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.5,
-    color: palette.muted,
-    lineHeight: 1.45,
-    marginBottom: 5,
-    textAlign: 'justify',
-  },
-  featuredStack: {
-    fontFamily: CV_PDF_REGULAR,
-    fontSize: 9.2,
-    color: palette.muted,
-    lineHeight: 1.42,
-    marginBottom: 5,
-    textAlign: 'left',
-  },
-  featuredStackLabel: {
-    fontFamily: CV_PDF_BOLD,
-    fontSize: 9.2,
-    color: palette.text,
-  },
-  /** Misma idea que MatchpointWordmark / SVG: MATCH amarillo + POINT violeta, negrita itálica */
-  featuredWordmarkRow: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'center',
-    flexWrap: 'nowrap',
-  },
-  featuredWordmarkMatch: {
-    fontFamily: CV_PDF_BOLD_ITALIC,
-    fontSize: 17,
-    letterSpacing: -0.95,
-    color: '#fbbf24',
-  },
-  featuredWordmarkPoint: {
-    fontFamily: CV_PDF_BOLD_ITALIC,
-    fontSize: 17,
-    letterSpacing: -0.95,
-    color: '#8b5cf6',
-  },
-  featuredWordmarkBadge: {
-    fontFamily: CV_PDF_ITALIC,
-    fontSize: 7.8,
-    letterSpacing: 0.25,
-    color: '#ffffff',
-    marginTop: 2,
-    textAlign: 'center',
-  },
-  featuredWordmarkStack: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  featuredLinksRow: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 6,
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  featuredLinksRowSingle: {
-    justifyContent: 'center',
-  },
-  featuredLinkBtn: {
-    flexGrow: 1,
-    borderWidth: 1,
-    borderColor: '#35354a',
-    backgroundColor: '#0b0b14',
-    borderRadius: 6,
-    paddingVertical: 4,
-    paddingHorizontal: 6,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  featuredLinkBtnSingle: {
-    maxWidth: 150,
-  },
-  featuredLinkLabel: {
-    fontFamily: CV_PDF_BOLD,
-    fontSize: 8.6,
-    color: palette.text,
-    textAlign: 'center',
+    flex: 1,
+    fontSize: 9,
+    color: palette.body,
+    lineHeight: 1.36,
   },
 });
 
-/** Education as one wrapped paragraph to keep the PDF on a single page */
-function EducationInline({ education }: Pick<CvPdfPayload, 'education'>) {
-  return (
-    <Text style={styles.educationInline}>
-      {education.map((line, i) => (
-        <Text key={`edu-${i}`}>
-          {i > 0 ? '   •   ' : ''}
-          <Text style={styles.skillLineTitle}>
-            {line.kind === 'plain' ? line.text : line.title}
-          </Text>
-          {line.kind === 'split' ? ` · ${line.rest}` : ''}
-        </Text>
-      ))}
-    </Text>
-  );
-}
+const accent = palette.accent;
 
 function SummaryRich({ source }: { source: string }) {
   const parts: { bold: boolean; text: string }[] = [];
@@ -457,15 +175,11 @@ function SummaryRich({ source }: { source: string }) {
   let last = 0;
   let m: RegExpExecArray | null;
   while ((m = re.exec(source)) !== null) {
-    if (m.index > last) {
-      parts.push({ bold: false, text: source.slice(last, m.index) });
-    }
+    if (m.index > last) parts.push({ bold: false, text: source.slice(last, m.index) });
     parts.push({ bold: true, text: m[1] });
     last = m.index + m[0].length;
   }
-  if (last < source.length) {
-    parts.push({ bold: false, text: source.slice(last) });
-  }
+  if (last < source.length) parts.push({ bold: false, text: source.slice(last) });
 
   return (
     <Text style={styles.summary}>
@@ -480,17 +194,6 @@ function SummaryRich({ source }: { source: string }) {
       )}
     </Text>
   );
-}
-
-const accent = palette.accent;
-
-function resolvePdfImageSrc(pathOrUrl: string | undefined): string | undefined {
-  if (!pathOrUrl) return undefined;
-  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) return pathOrUrl;
-  if (typeof window !== 'undefined') {
-    return new URL(pathOrUrl, window.location.origin).href;
-  }
-  return pathOrUrl;
 }
 
 function IconPin() {
@@ -595,189 +298,70 @@ function IconLang() {
   );
 }
 
-function CvPdfHeader({ data }: { data: CvPdfPayload }) {
+function MetaItem({ icon, children }: { icon?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <View style={styles.headerCard}>
-      <View style={styles.nameRow}>
-        <Text style={styles.name}>Octavio Frangipani</Text>
-      </View>
-      <View style={styles.headlineRow}>
-        <Text style={styles.headline}>{data.headline}</Text>
-      </View>
-
-      <View style={styles.metaFlow}>
-        <View style={styles.metaChunk}>
-          <View style={styles.metaIconSlot}>
-            <IconPin />
-          </View>
-          <Text style={styles.metaText}>{data.location}</Text>
-        </View>
-        <Text style={styles.sep}> · </Text>
-        {data.whatsapp.map((contact, index) => (
-          <Fragment key={contact.href}>
-            {index > 0 ? <Text style={styles.sep}> · </Text> : null}
-            <View style={styles.metaChunk}>
-              <View style={styles.metaIconSlot}>
-                <IconWhatsApp />
-              </View>
-              <Link src={contact.href} style={styles.link}>
-                {contact.label}
-              </Link>
-            </View>
-          </Fragment>
-        ))}
-        <Text style={styles.sep}> · </Text>
-        <View style={styles.metaChunk}>
-          <View style={styles.metaIconSlot}>
-            <IconMail />
-          </View>
-          <Link src={`mailto:${data.email}`} style={styles.link}>
-            {data.email}
-          </Link>
-        </View>
-        <Text style={styles.sep}> · </Text>
-        <View style={styles.metaChunk}>
-          <View style={styles.metaIconSlot}>
-            <IconLinkedIn />
-          </View>
-          <Link src={data.linkedinUrl} style={styles.link}>
-            {data.linkedinLabel}
-          </Link>
-        </View>
-        <Text style={styles.sep}> · </Text>
-        <View style={styles.metaChunk}>
-          <View style={styles.metaIconSlot}>
-            <IconGitHub />
-          </View>
-          <Link src={data.githubUrl} style={styles.link}>
-            {data.githubLabel}
-          </Link>
-        </View>
-        <Text style={styles.sep}> · </Text>
-        <View style={styles.metaChunk}>
-          <View style={styles.metaIconSlot}>
-            <IconPortfolio />
-          </View>
-          <Link src={data.portfolioUrl} style={styles.link}>
-            {data.portfolioLabel}
-          </Link>
-        </View>
-        <Text style={styles.sep}> · </Text>
-        <View style={styles.metaChunk}>
-          <Text style={styles.metaText}>{data.fullCvLabel}: </Text>
-          <Link src={data.fullCvUrl} style={styles.link}>
-            {data.fullCvUrl.replace(/^https:\/\//, '')}
-          </Link>
-        </View>
-      </View>
-
-      <View style={styles.langsRow}>
-        <View style={styles.metaIconSlot}>
-          <IconLang />
-        </View>
-        <Text style={styles.langsInline}>
-          {data.langSpanish}
-          <Text style={styles.sep}> · </Text>
-          {data.langEnglish}
-        </Text>
-      </View>
+    <View style={styles.metaChunk}>
+      {icon ? <View style={styles.metaIconSlot}>{icon}</View> : null}
+      {children}
     </View>
   );
 }
 
-function FeaturedProjectPdf({
-  project,
-  quickLinkWeb,
-  quickLinkGithub,
-}: {
-  project: CvPdfFeaturedProject;
-  quickLinkWeb: string;
-  quickLinkGithub: string;
-}) {
-  const imgSrc = resolvePdfImageSrc(project.imageSrc);
-  const imageStyle = [
-    styles.featuredImage,
-    project.imageSlightScale ? styles.featuredImageSizeBoost : styles.featuredImageSizeDefault,
-  ];
-  const innerSlot = project.imageComfortPadding
-    ? styles.featuredImagePdfPaddedInner
-    : styles.featuredImagePdfInnerDefault;
-
-  const wordmarkBadge =
-    project.matchpointWordmarkVariant === 'mobile'
-      ? 'MOBILE'
-      : project.matchpointWordmarkVariant === 'web'
-        ? 'WEB'
-        : null;
-
-  const needsWebLinks = project.matchpointWordmarkVariant === 'web';
-  const needsMobileGitHub = project.matchpointWordmarkVariant === 'mobile';
-  const needsMiralabWeb = project.repoUrl === 'https://miralab.ar';
-
-  const websiteUrl = 'https://matchpoint.miralab.ar/';
-  const githubUrl = project.repoUrl;
-
+function CvPdfHeader({ data }: { data: CvPdfPayload }) {
   return (
-    <View style={styles.featuredProject}>
-      {project.matchpointWordmark ? (
-        <View style={styles.featuredImageSlot}>
-          <View style={innerSlot}>
-            <Link src={project.repoUrl}>
-              <View style={styles.featuredWordmarkStack}>
-                <View style={styles.featuredWordmarkRow}>
-                  <Text style={styles.featuredWordmarkMatch}>MATCH</Text>
-                  <Text style={styles.featuredWordmarkPoint}>POINT</Text>
-                </View>
-                {wordmarkBadge ? (
-                  <Text style={styles.featuredWordmarkBadge}>{wordmarkBadge}</Text>
-                ) : null}
-              </View>
-            </Link>
-          </View>
-        </View>
-      ) : imgSrc ? (
-        <View style={styles.featuredImageSlot}>
-          <View style={innerSlot}>
-            <Link src={project.repoUrl}>
-              <Image src={imgSrc} style={imageStyle} />
-            </Link>
-          </View>
-        </View>
-      ) : null}
+    <View>
+      <Text style={styles.name}>Octavio Frangipani</Text>
+      <Text style={styles.headline}>{data.headline}</Text>
+      <Text style={styles.headlineStack}>{data.headlineStack}</Text>
+      <Text style={styles.availability}>{data.availability}</Text>
 
-      {needsWebLinks ? (
-        <View style={styles.featuredLinksRow}>
-          <Link src={websiteUrl} style={styles.featuredLinkBtn}>
-            <Text style={styles.featuredLinkLabel}>{quickLinkWeb}</Text>
+      <View style={styles.metaFlow}>
+        <MetaItem icon={<IconPin />}>
+          <Text style={styles.metaText}>{data.location}</Text>
+        </MetaItem>
+        <MetaItem icon={<IconLang />}>
+          <Text style={styles.metaText}>
+            {data.langSpanish} · {data.langEnglish}
+          </Text>
+        </MetaItem>
+      </View>
+      <View style={styles.metaFlow}>
+        <MetaItem icon={<IconMail />}>
+          <Link src={`mailto:${data.email}`} style={styles.link}>
+            {data.email}
           </Link>
-          <Link src={githubUrl} style={styles.featuredLinkBtn}>
-            <Text style={styles.featuredLinkLabel}>{quickLinkGithub}</Text>
+        </MetaItem>
+        {data.whatsapp.map((contact) => (
+          <Fragment key={contact.href}>
+            <MetaItem icon={<IconWhatsApp />}>
+              <Link src={contact.href} style={styles.link}>
+                {contact.label}
+              </Link>
+            </MetaItem>
+          </Fragment>
+        ))}
+        <MetaItem icon={<IconLinkedIn />}>
+          <Link src={data.linkedinUrl} style={styles.link}>
+            {data.linkedinUrl.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}
           </Link>
-        </View>
-      ) : needsMobileGitHub ? (
-        <View style={[styles.featuredLinksRow, styles.featuredLinksRowSingle]}>
-          <Link src={githubUrl} style={[styles.featuredLinkBtn, styles.featuredLinkBtnSingle]}>
-            <Text style={styles.featuredLinkLabel}>{quickLinkGithub}</Text>
+        </MetaItem>
+        <MetaItem icon={<IconGitHub />}>
+          <Link src={data.githubUrl} style={styles.link}>
+            {data.githubUrl.replace(/^https:\/\//, '')}
           </Link>
-        </View>
-      ) : needsMiralabWeb ? (
-        <View style={[styles.featuredLinksRow, styles.featuredLinksRowSingle]}>
-          <Link
-            src="https://miralab.ar"
-            style={[styles.featuredLinkBtn, styles.featuredLinkBtnSingle]}
-          >
-            <Text style={styles.featuredLinkLabel}>{quickLinkWeb}</Text>
+        </MetaItem>
+        <MetaItem icon={<IconPortfolio />}>
+          <Link src={data.portfolioUrl} style={styles.link}>
+            {data.portfolioUrl.replace(/^https:\/\//, '')}
           </Link>
-        </View>
-      ) : null}
-
-      <Text style={styles.featuredDesc}>{project.description.replaceAll('|PS|', '')}</Text>
-      {project.stack.trim() ? (
-        <Text style={styles.featuredStack}>
-          <Text style={styles.featuredStackLabel}>{project.stackLabel}: </Text>
-          {project.stack}
-        </Text>
-      ) : null}
+        </MetaItem>
+        <MetaItem>
+          <Text style={styles.metaText}>{data.fullCvLabel}: </Text>
+          <Link src={data.fullCvUrl} style={styles.link}>
+            {data.fullCvUrl.replace(/^https:\/\//, '')}
+          </Link>
+        </MetaItem>
+      </View>
     </View>
   );
 }
@@ -785,7 +369,7 @@ function FeaturedProjectPdf({
 function RoleBlock({ role }: { role: CvPdfRole }) {
   if (role.bullets.length === 0) {
     return (
-      <View style={styles.roleBlock} wrap={false}>
+      <View style={styles.roleBlockCompact} wrap={false}>
         <View style={styles.roleTop}>
           <Text style={styles.roleTitle}>
             {role.title}
@@ -806,9 +390,7 @@ function RoleBlock({ role }: { role: CvPdfRole }) {
       {role.bullets.map((b, i) => (
         <View key={i} style={styles.bulletRow}>
           <Text style={styles.bulletDot}>•</Text>
-          <Text style={b.accent ? [styles.bulletText, styles.bulletAccent] : styles.bulletText}>
-            {b.text}
-          </Text>
+          <Text style={styles.bulletText}>{b.text}</Text>
         </View>
       ))}
     </View>
@@ -825,55 +407,42 @@ export default function CvPdfDocument({ data }: CvPdfDocumentProps) {
       <Page size="A4" style={styles.page} wrap>
         <CvPdfHeader data={data} />
 
-        <View style={[styles.sectionCard, styles.sectionCardFirst]}>
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>{data.sectionSummary}</Text>
           <SummaryRich source={data.summaryRich} />
         </View>
 
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>{data.sectionSkills}</Text>
-          <View style={styles.skillsGrid}>
-            {data.skills.map((s) => (
-              <Text key={s.title} style={styles.skillLine}>
-                <Text style={styles.skillLineTitle}>{s.title}: </Text>
-                {s.body}
-              </Text>
-            ))}
-          </View>
-        </View>
-
-        <View style={styles.sectionCard}>
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>{data.sectionExperience}</Text>
-          <View style={styles.experienceList}>
-            {data.roles.map((role, i) => (
-              <RoleBlock key={`${role.meta}|${role.company}|${i}`} role={role} />
-            ))}
-          </View>
+          {data.roles.map((role, i) => (
+            <RoleBlock key={`${role.meta}|${role.company}|${i}`} role={role} />
+          ))}
         </View>
 
-        <View style={styles.sectionCard} wrap={false}>
+        <View style={styles.section} wrap={false}>
+          <Text style={styles.sectionTitle}>{data.sectionSkills}</Text>
+          {data.skills.map((s) => (
+            <Text key={s.title} style={styles.skillLine}>
+              <Text style={styles.skillLineTitle}>{s.title}: </Text>
+              {s.body}
+            </Text>
+          ))}
+        </View>
+
+        <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>{data.sectionEducation}</Text>
-          <EducationInline education={data.education} />
-        </View>
-
-        {data.featuredProjects.length > 0 ? (
-          <View style={styles.sectionCard}>
-            <Text style={styles.sectionTitle}>{data.sectionFeaturedProjects}</Text>
-            <View style={styles.featuredProjectsGrid}>
-              <View style={[styles.featuredProjectsRow, styles.featuredProjectsRowLast]}>
-                {data.featuredProjects.map((project) => (
-                  <View key={project.repoUrl} style={styles.featuredProjectCell}>
-                    <FeaturedProjectPdf
-                      project={project}
-                      quickLinkWeb={data.featuredQuickLinkWeb}
-                      quickLinkGithub={data.featuredQuickLinkGithub}
-                    />
-                  </View>
-                ))}
-              </View>
+          {data.education.map((line, i) => (
+            <View key={`edu-${i}`} style={styles.educationRow}>
+              <Text style={styles.bulletDot}>•</Text>
+              <Text style={styles.educationLine}>
+                <Text style={styles.skillLineTitle}>
+                  {line.kind === 'plain' ? line.text : line.title}
+                </Text>
+                {line.kind === 'split' ? ` · ${line.rest}` : ''}
+              </Text>
             </View>
-          </View>
-        ) : null}
+          ))}
+        </View>
       </Page>
     </Document>
   );
